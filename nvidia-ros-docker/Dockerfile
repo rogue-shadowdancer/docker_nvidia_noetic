@@ -47,7 +47,7 @@ ros-$ROS_DISTRO-mavros \
 ros-$ROS_DISTRO-mavros-msgs \
 ros-$ROS_DISTRO-rviz-visual-tools \
 ros-$ROS_DISTRO-gazebo-plugins \
-sudo apt-get install ros-$ROS_DISTRO-octomap* \
+ros-$ROS_DISTRO-octomap* \
 python-is-python3 \
 ros-$ROS_DISTRO-dynamic-edt-3d \
 ros-$ROS_DISTRO-gazebo* ;
