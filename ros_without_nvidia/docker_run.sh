@@ -1,5 +1,5 @@
 CONTAINER_NAME="noetic_docker"
-IMAGE_NAME="hf/nvidia-ros-noetic"
+IMAGE_NAME="cwc_docker"
 SHARED_DIR="/home/tianyi.zhang/ws/caric_dku/cwc_docker/shared_dir"
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
@@ -16,6 +16,7 @@ then
 fi
 
 docker run -it \
+    --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="$XSOCK:$XSOCK:rw" \
     --env="XAUTHORITY=$XAUTH" \
@@ -27,4 +28,3 @@ docker run -it \
     $IMAGE_NAME \
     bash
 
-    # --env="DISPLAY=$DISPLAY" \
