@@ -18,6 +18,7 @@ fi
 docker run -it \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="$XSOCK:$XSOCK:rw" \
+    --env="DISPLAY=$DISPLAY" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
     --net=host \
@@ -27,4 +28,3 @@ docker run -it \
     $IMAGE_NAME \
     bash
 
-    # --env="DISPLAY=$DISPLAY" \

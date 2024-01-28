@@ -38,7 +38,11 @@ So far this only been tested on Linux machines.
     By default, this repo's `data` folder is mounted in the `bag` and `rviz` containers
     under `/host`. `bag` will look for a rosbag file named `test.bag` in there to play.
 
-2. Start the containers, either via the example `compose-up` file:
+3. start the new container:
+    ```
+    bash docker_run.sh
+    ```
+4. Start the examples, either via the example `compose-up` file:
 
     ```
     ./compose-up

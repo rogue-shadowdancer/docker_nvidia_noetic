@@ -5,6 +5,18 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install packages
 RUN apt update && apt install -y \
+build-essential \
+libgl1-mesa-dev \
+libglew-dev \
+libsdl2-dev \
+libsdl2-image-dev \
+libglm-dev \
+libfreetype6-dev \
+libglfw3-dev \
+libglfw3 \
+libglu1-mesa-dev \
+freeglut3-dev \
+python3-pip \
 lsb-release \
 git \
 neovim \
@@ -22,9 +34,11 @@ software-properties-common \
 tmux \
 psmisc \
 screen \
+python-is-python3 \
+x11-apps \
 tcl tk expect aria2 net-tools;
 
-RUN export https_proxy=http://10.200.13.85:3128 && http_proxy=http://10.200.13.85:3128
+RUN pip install numpy==1.24 open3d alphashape ortools
 
 RUN git config --global credential.helper store
 
@@ -33,6 +47,7 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main"
     curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - && \
     apt update && \
     apt install -y ros-noetic-desktop-full python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+
 
 # Configure ROS
 ENV ROS_DISTRO noetic
@@ -48,15 +63,17 @@ ros-$ROS_DISTRO-mavros-msgs \
 ros-$ROS_DISTRO-rviz-visual-tools \
 ros-$ROS_DISTRO-gazebo-plugins \
 ros-$ROS_DISTRO-octomap* \
-python-is-python3 \
 ros-$ROS_DISTRO-dynamic-edt-3d \
 ros-$ROS_DISTRO-gazebo* ;
 
-RUN rosdep init
-RUN rosdep update  
 
+RUN echo "export https_proxy=http://10.200.13.85:3128 && http_proxy=http://10.200.13.85:3128" >> /root/.bashrc
 RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
 
+RUN export https_proxy=http://10.200.13.85:3128 && http_proxy=http://10.200.13.85:3128
+RUN source /opt/ros/noetic/setup.bash
+RUN rosdep init
+RUN rosdep update  
 COPY ./ros_entrypoint.sh /
 
 ENTRYPOINT ["/ros_entrypoint.sh"]
