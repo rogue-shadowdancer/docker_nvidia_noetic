@@ -15,10 +15,13 @@ then
     chmod a+r $XAUTH
 fi
 
+xhost +
+
 docker run -it \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="$XSOCK:$XSOCK:rw" \
     --env="DISPLAY=$DISPLAY" \
+    --volume="$HOME/.Xauthority:/root/.Xauthority:ro" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
     --net=host \
