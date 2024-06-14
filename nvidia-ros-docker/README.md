@@ -60,4 +60,10 @@ So far this only been tested on Linux machines.
 
     Because I'm "lazy and reckless", I have  simply adjusted the permissions for the
     X server host in `compose-up` prior to launching, reverting when done. Generally,
-    **this isn't a good idea**.
+    **this isn't a good idea**.  
+
+## Comments by Rogue
+### Its fking slow
+just keep patience:  
+![](imgs/2024-06-15-00-09-46.png)
+### Install NVIDIA container toolkit first!

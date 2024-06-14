@@ -66,12 +66,13 @@ ros-$ROS_DISTRO-octomap* \
 ros-$ROS_DISTRO-dynamic-edt-3d \
 ros-$ROS_DISTRO-gazebo* ;
 
+RUN chsh -s /bin/bash
 
 RUN echo "export https_proxy=http://10.200.13.85:3128 && http_proxy=http://10.200.13.85:3128" >> /root/.bashrc
 RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
 
 RUN export https_proxy=http://10.200.13.85:3128 && http_proxy=http://10.200.13.85:3128
-RUN source /opt/ros/noetic/setup.bash
+RUN exec bash && source /opt/ros/noetic/setup.bash
 RUN rosdep init
 RUN rosdep update  
 COPY ./ros_entrypoint.sh /
